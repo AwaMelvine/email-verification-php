@@ -12,22 +12,22 @@
 <body>
   <div class="container">
     <div class="row">
-      <div class="col-md-4 offset-md-4 form-wrapper">
-        <h3 class="text-center">Login</h3>
+      <div class="col-md-4 offset-md-4 form-wrapper auth login">
+        <h3 class="text-center form-title">Login</h3>
         <form action="signup.php" method="post">
           <div class="form-group">
             <label>Username</label>
-            <input type="text" name="username" class="form-control">
+            <input type="text" name="username" class="form-control form-control-lg">
           </div>
           <div class="form-group">
             <label>Password</label>
-            <input type="password" name="password" class="form-control">
+            <input type="password" name="password" class="form-control form-control-lg">
           </div>
           <div class="form-group">
-            <button type="submit" name="signup-btn" class="btn btn-success pull-right">Sign Up</button>
+            <button type="submit" name="signup-btn" class="btn btn-lg btn-block">Login</button>
           </div>
         </form>
-
+        <p>Don't yet have an account? <a href="signup.php">Sign up</a></p>
       </div>
     </div>
   </div>
