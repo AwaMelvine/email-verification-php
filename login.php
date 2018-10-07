@@ -1,3 +1,4 @@
+<?php include 'controllers/authController.php'?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -14,9 +15,9 @@
     <div class="row">
       <div class="col-md-4 offset-md-4 form-wrapper auth login">
         <h3 class="text-center form-title">Login</h3>
-        <form action="signup.php" method="post">
+        <form action="login.php" method="post">
           <div class="form-group">
-            <label>Username</label>
+            <label>Username or Email</label>
             <input type="text" name="username" class="form-control form-control-lg">
           </div>
           <div class="form-group">
@@ -24,7 +25,7 @@
             <input type="password" name="password" class="form-control form-control-lg">
           </div>
           <div class="form-group">
-            <button type="submit" name="signup-btn" class="btn btn-lg btn-block">Login</button>
+            <button type="submit" name="login-btn" class="btn btn-lg btn-block">Login</button>
           </div>
         </form>
         <p>Don't yet have an account? <a href="signup.php">Sign up</a></p>
