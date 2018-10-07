@@ -1,3 +1,4 @@
+<?php include 'controllers/authController.php'?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -14,14 +15,15 @@
   <div class="container">
     <div class="row">
       <div class="col-md-4 offset-md-4 home-wrapper">
+
         <div class="alert alert-warning alert-dismissible fade show" role="alert">
-          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-          You need to verify your account!
+          You need to verify your email address!
+          Sign into your email account and click
+          on the verification link we just emailed you
+          at <strong><?php echo $_SESSION['email']; ?></strong>
         </div>
-        <p>You are logged in. Verify your account by clicking on the link we sent to your email.</p>
-        <button class="btn btn-lg btn-primary btn-block">Verified Action!</button>
+
+        <button class="btn btn-lg btn-primary btn-block">I'm verified!!!</button>
       </div>
     </div>
   </div>

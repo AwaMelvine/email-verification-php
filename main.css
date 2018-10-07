@@ -22,13 +22,14 @@
 .form-wrapper {
   border: 1px solid #80CED7;
   border-radius: 5px;
-  padding: 35px 15px 0px 15px;
+  padding: 25px 15px 0px 15px;
 }
 
 .form-wrapper.auth .form-title {
   color: #007EA7;
 }
 
+.home-wrapper button,
 .form-wrapper.auth button {
   background: #007EA7;
   color: white;
