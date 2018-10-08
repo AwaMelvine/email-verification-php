@@ -15,10 +15,20 @@
     <div class="row">
       <div class="col-md-4 offset-md-4 form-wrapper auth login">
         <h3 class="text-center form-title">Login</h3>
+        <?php if (count($errors) > 0): ?>
+        <div class="alert alert-danger">
+        <?php foreach ($errors as $error): ?>
+          <li>
+            <?php echo $error; ?>
+          </li>
+          <?php endforeach;?>
+        </div>
+        <?php endif;?>
+
         <form action="login.php" method="post">
           <div class="form-group">
             <label>Username or Email</label>
-            <input type="text" name="username" class="form-control form-control-lg">
+            <input type="text" name="username" class="form-control form-control-lg" value="<?php echo $username; ?>">
           </div>
           <div class="form-group">
             <label>Password</label>

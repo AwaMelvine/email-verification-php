@@ -1,5 +1,9 @@
 @import url('https://fonts.googleapis.com/css?family=Lora');
 
+li {
+  list-style-type: none;
+}
+
 .form-wrapper {
   margin-top: 50px;
   font-family: 'Lora', serif;

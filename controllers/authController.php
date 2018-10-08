@@ -9,8 +9,19 @@ $conn = new mysqli('localhost', 'root', '', 'user-verification');
 
 // SIGN UP USER
 if (isset($_POST['signup-btn'])) {
+    if (empty($_POST['username'])) {
+        $errors['username'] = 'Username required';
+    }
+    if (empty($_POST['email'])) {
+        $errors['email'] = 'Email required';
+    }
+    if (empty($_POST['password'])) {
+        $errors['password'] = 'Password required';
+    }
+    if (isset($_POST['password']) && $_POST['password'] !== $_POST['passwordConf']) {
+        $errors['passwordConf'] = 'The two passwords do not match';
+    }
 
-    // receive all input values from the form.
     $username = $_POST['username'];
     $email = $_POST['email'];
     $password = password_hash($_POST['password'], PASSWORD_DEFAULT); //encrypt password
@@ -24,6 +35,8 @@ if (isset($_POST['signup-btn'])) {
         if ($result) {
             $user_id = $stmt->insert_id;
             $stmt->close();
+
+            // TODO: Send verification email
 
             $_SESSION['id'] = $user_id;
             $_SESSION['username'] = $username;
@@ -39,6 +52,13 @@ if (isset($_POST['signup-btn'])) {
 
 // LOGIN
 if (isset($_POST['login-btn'])) {
+    if (empty($_POST['username'])) {
+        $errors['username'] = 'Username or email required';
+    }
+    if (empty($_POST['password'])) {
+        $errors['password'] = 'Password required';
+    }
+
     $username = $_POST['username'];
     $password = $_POST['password'];
 
@@ -63,7 +83,6 @@ if (isset($_POST['login-btn'])) {
             } else { // if password does not match
                 $_SESSION['error_msg'] = "Wrong credentials";
             }
-
         } else {
             $_SESSION['error_msg'] = "Database error. Login failed!";
         }
