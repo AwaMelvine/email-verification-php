@@ -27,10 +27,10 @@ function sendVerificationEmail($userEmail, $token)
         }
         a {
           background: #592f80;
-          color: white;
-          border: none;
+          text-decoration: none;
           padding: 8px 15px;
           border-radius: 5px;
+          color: #fff;
         }
       </style>
     </head>
@@ -38,7 +38,7 @@ function sendVerificationEmail($userEmail, $token)
     <body>
       <div class="wrapper">
         <p>Thank you for signing up on our site. Please click on the link below to verify your account:.</p>
-        <a href="http://localhost/cwa/verify-user/index.php?token=' . $token . '">Verify Email!</a>
+        <a href="http://localhost/cwa/verify-user/verify_email.php?token=' . $token . '">Verify Email!</a>
       </div>
     </body>
 

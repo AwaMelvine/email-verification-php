@@ -1,4 +1,6 @@
 <?php
+session_start();
+require_once 'constants.php';
 
 $conn = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
 
@@ -15,7 +17,7 @@ if (isset($_GET['token'])) {
             $_SESSION['username'] = $user['username'];
             $_SESSION['email'] = $user['email'];
             $_SESSION['verified'] = true;
-            $_SESSION['message'] = "Your email address has been verifid successfully";
+            $_SESSION['message'] = "Your email address has been verified successfully";
             $_SESSION['type'] = 'alert-success';
             header('location: index.php');
             exit(0);

@@ -41,7 +41,7 @@ if (isset($_POST['signup-btn'])) {
     if (count($errors) === 0) {
         $query = "INSERT INTO users SET username=?, email=?, token=?, password=?";
         $stmt = $conn->prepare($query);
-        $stmt->bind_param('ssss', $username, $email, $password, $token);
+        $stmt->bind_param('ssss', $username, $email, $token, $password);
         $result = $stmt->execute();
 
         if ($result) {
@@ -92,8 +92,7 @@ if (isset($_POST['login-btn'])) {
                 header('location: index.php');
                 exit(0);
             } else { // if password does not match
-                $_SESSION['message'] = "Wrong credentials";
-                $_SESSION['type'] = "alert-danger";
+                $errors['login_fail'] = "Wrong username / password";
             }
         } else {
             $_SESSION['message'] = "Database error. Login failed!";

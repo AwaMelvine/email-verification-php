@@ -1,4 +1,10 @@
 <?php include 'controllers/authController.php'?>
+<?php
+// redirect user to login page if they're not logged in
+if (empty($_SESSION['email'])) {
+    header('location: login.php');
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -21,24 +27,28 @@
         <?php if (isset($_SESSION['message'])): ?>
         <div class="alert <?php echo $_SESSION['type'] ?>">
           <?php
-            echo $_SESSION['message'];
-            unset($_SESSION['message']);
-            unset($_SESSION['type']);
-          ?>
+echo $_SESSION['message'];
+unset($_SESSION['message']);
+unset($_SESSION['type']);
+?>
         </div>
         <?php endif;?>
 
-        <?php if ($_SESSION['verified'] == false): ?>
-          <div class="alert alert-warning alert-dismissible fade show" role="alert">
-            You need to verify your email address!
-            Sign into your email account and click
-            on the verification link we just emailed you
-            at <strong>
-              <?php echo $_SESSION['email']; ?></strong>
-          </div>
+        <h4>Welcome,
+          <?php echo $_SESSION['username']; ?>
+        </h4>
+        <a href="logout.php" style="color: red">Logout</a>
+        <?php if (!$_SESSION['verified']): ?>
+        <div class="alert alert-warning alert-dismissible fade show" role="alert">
+          You need to verify your email address!
+          Sign into your email account and click
+          on the verification link we just emailed you
+          at
+          <strong><?php echo $_SESSION['email']; ?></strong>
+        </div>
         <?php else: ?>
-          <button class="btn btn-lg btn-primary btn-block">I'm verified!!!</button>
-        <?php endif; ?>
+        <button class="btn btn-lg btn-primary btn-block">I'm verified!!!</button>
+        <?php endif;?>
       </div>
     </div>
   </div>
