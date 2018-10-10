@@ -1,4 +1,6 @@
 <?php
+require_once 'emailController.php';
+
 session_start();
 
 $username = "";
@@ -36,7 +38,7 @@ if (isset($_POST['signup-btn'])) {
             $user_id = $stmt->insert_id;
             $stmt->close();
 
-            // TODO: Send verification email
+            sendVerificationEmail($email);
 
             $_SESSION['id'] = $user_id;
             $_SESSION['username'] = $username;
