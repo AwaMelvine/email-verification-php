@@ -25,7 +25,6 @@ function sendVerificationEmail($userEmail, $token)
           color: #444;
           font-size: 1.3em;
         }
-
         a {
           background: #592f80;
           color: white;

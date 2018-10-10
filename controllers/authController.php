@@ -1,4 +1,5 @@
 <?php
+require_once './constants.php';
 require_once 'emailController.php';
 
 session_start();
@@ -7,7 +8,7 @@ $username = "";
 $email = "";
 $errors = [];
 
-$conn = new mysqli('localhost', 'root', '', 'user-verification');
+$conn = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
 
 // SIGN UP USER
 if (isset($_POST['signup-btn'])) {
@@ -29,6 +30,14 @@ if (isset($_POST['signup-btn'])) {
     $token = bin2hex(random_bytes(50)); // generate unique token
     $password = password_hash($_POST['password'], PASSWORD_DEFAULT); //encrypt password
 
+    // Check if email already exists
+    $sql = "SELECT * FROM users WHERE email='$email' LIMIT 1";
+    $result = mysqli_query($conn, $sql);
+
+    if (mysqli_num_rows($result) > 0) {
+        $errors['email'] = "Email already exists";
+    }
+
     if (count($errors) === 0) {
         $query = "INSERT INTO users SET username=?, email=?, token=?, password=?";
         $stmt = $conn->prepare($query);
@@ -41,7 +50,6 @@ if (isset($_POST['signup-btn'])) {
 
             sendVerificationEmail($email, $token);
 
-            $_SESSION['id'] = $user_id;
             $_SESSION['username'] = $username;
             $_SESSION['email'] = $email;
             $_SESSION['verified'] = false;
@@ -62,7 +70,6 @@ if (isset($_POST['login-btn'])) {
     if (empty($_POST['password'])) {
         $errors['password'] = 'Password required';
     }
-
     $username = $_POST['username'];
     $password = $_POST['password'];
 
@@ -77,18 +84,20 @@ if (isset($_POST['login-btn'])) {
             if (password_verify($password, $user['password'])) { // if password matches
                 $stmt->close();
 
-                $_SESSION['id'] = $user['id'];
                 $_SESSION['username'] = $user['username'];
                 $_SESSION['email'] = $user['email'];
+                $_SESSION['verified'] = $user['verified'];
                 $_SESSION['message'] = 'You are logged in!';
                 $_SESSION['type'] = 'alert-success';
                 header('location: index.php');
                 exit(0);
             } else { // if password does not match
-                $_SESSION['error_msg'] = "Wrong credentials";
+                $_SESSION['message'] = "Wrong credentials";
+                $_SESSION['type'] = "alert-danger";
             }
         } else {
-            $_SESSION['error_msg'] = "Database error. Login failed!";
+            $_SESSION['message'] = "Database error. Login failed!";
+            $_SESSION['type'] = "alert-danger";
         }
     }
 
