@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <title>Test mail</title>
@@ -9,6 +10,7 @@
       color: #444;
       font-size: 1.3em;
     }
+
     button {
       background: #592f80;
       color: white;
@@ -18,10 +20,12 @@
     }
   </style>
 </head>
+
 <body>
   <div class="wrapper">
     <p>Thank you for signing up on our site. Please click on the link below to verify your account:.</p>
-    <button>Verify Email!</button>
+    <a href="<?php echo $token; ?>">Verify Email!</a>
   </div>
 </body>
+
 </html>

@@ -10,10 +10,40 @@ $transport = (new Swift_SmtpTransport('smtp.gmail.com', 465, 'ssl'))
 // Create the Mailer using your created Transport
 $mailer = new Swift_Mailer($transport);
 
-function sendVerificationEmail($userEmail)
+function sendVerificationEmail($userEmail, $token)
 {
     global $mailer;
-    $body = file_get_contents('./mail/verify.php');
+    $body = '<!DOCTYPE html>
+    <html lang="en">
+
+    <head>
+      <meta charset="UTF-8">
+      <title>Test mail</title>
+      <style>
+        .wrapper {
+          padding: 20px;
+          color: #444;
+          font-size: 1.3em;
+        }
+
+        a {
+          background: #592f80;
+          color: white;
+          border: none;
+          padding: 8px 15px;
+          border-radius: 5px;
+        }
+      </style>
+    </head>
+
+    <body>
+      <div class="wrapper">
+        <p>Thank you for signing up on our site. Please click on the link below to verify your account:.</p>
+        <a href="http://localhost/cwa/verify-user/index.php?token=' . $token . '">Verify Email!</a>
+      </div>
+    </body>
+
+    </html>';
 
     // Create a message
     $message = (new Swift_Message('Verify your email'))

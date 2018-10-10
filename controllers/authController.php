@@ -26,23 +26,25 @@ if (isset($_POST['signup-btn'])) {
 
     $username = $_POST['username'];
     $email = $_POST['email'];
+    $token = bin2hex(random_bytes(50)); // generate unique token
     $password = password_hash($_POST['password'], PASSWORD_DEFAULT); //encrypt password
 
     if (count($errors) === 0) {
-        $query = "INSERT INTO users SET username=?, email=?, password=?";
+        $query = "INSERT INTO users SET username=?, email=?, token=?, password=?";
         $stmt = $conn->prepare($query);
-        $stmt->bind_param('sss', $username, $email, $password);
+        $stmt->bind_param('ssss', $username, $email, $password, $token);
         $result = $stmt->execute();
 
         if ($result) {
             $user_id = $stmt->insert_id;
             $stmt->close();
 
-            sendVerificationEmail($email);
+            sendVerificationEmail($email, $token);
 
             $_SESSION['id'] = $user_id;
             $_SESSION['username'] = $username;
             $_SESSION['email'] = $email;
+            $_SESSION['verified'] = false;
             $_SESSION['message'] = 'You are logged in!';
             $_SESSION['type'] = 'alert-success';
             header('location: index.php');
