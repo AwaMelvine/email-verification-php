@@ -1,14 +1,10 @@
 <?php
-require_once './constants.php';
+require_once 'config/db.php';
 require_once 'emailController.php';
-
-session_start();
 
 $username = "";
 $email = "";
 $errors = [];
-
-$conn = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
 
 // SIGN UP USER
 if (isset($_POST['signup-btn'])) {
@@ -100,4 +96,13 @@ if (isset($_POST['login-btn'])) {
         }
     }
 
+}
+
+if (isset($_GET['logout'])) {
+    session_destroy();
+    unset($_SESSION['username']);
+    unset($_SESSION['email']);
+    unset($_SESSION['verify']);
+    header("location: login.php");
+    exit(0);
 }

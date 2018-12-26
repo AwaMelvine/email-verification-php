@@ -1,9 +1,18 @@
-<?php include 'controllers/authController.php'?>
 <?php
+
+include 'controllers/authController.php';
+
+// verify email when user has clicked on the verification link
+if (isset($_GET['token'])) {
+    $token = $_GET['token'];
+    verifyEmail($token);
+}
+
 // redirect user to login page if they're not logged in
 if (empty($_SESSION['email'])) {
     header('location: login.php');
 }
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -37,7 +46,7 @@ unset($_SESSION['type']);
         <h4>Welcome,
           <?php echo $_SESSION['username']; ?>
         </h4>
-        <a href="logout.php" style="color: red">Logout</a>
+        <a href="index.php?logout=1" style="color: red">Logout</a>
         <?php if (!$_SESSION['verified']): ?>
         <div class="alert alert-warning alert-dismissible fade show" role="alert">
           You need to verify your email address!
