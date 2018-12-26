@@ -1,4 +1,4 @@
-<?php include 'controllers/authController.php'?>
+<?php include_once 'controllers/authController.php'?>
 <!DOCTYPE html>
 <html lang="en">
 

@@ -1,9 +1,18 @@
-<?php include 'controllers/authController.php'?>
 <?php
+
+include 'controllers/authController.php';
+
+// verify email when user has clicked on the verification link
+if (isset($_GET['token'])) {
+    $token = $_GET['token'];
+    verifyEmail($token);
+}
+
 // redirect user to login page if they're not logged in
 if (empty($_SESSION['email'])) {
     header('location: login.php');
 }
+
 ?>
 <!DOCTYPE html>
 <html lang="en">

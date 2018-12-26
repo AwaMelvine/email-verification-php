@@ -2,8 +2,6 @@
 require_once 'config/db.php';
 require_once 'emailController.php';
 
-session_start();
-
 $username = "";
 $email = "";
 $errors = [];
