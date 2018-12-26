@@ -97,3 +97,12 @@ if (isset($_POST['login-btn'])) {
     }
 
 }
+
+if (isset($_GET['logout'])) {
+    session_destroy();
+    unset($_SESSION['username']);
+    unset($_SESSION['email']);
+    unset($_SESSION['verify']);
+    header("location: login.php");
+    exit(0);
+}
