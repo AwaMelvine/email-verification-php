@@ -1,8 +1,7 @@
 <?php
-session_start();
-require_once 'constants.php';
+require_once 'config/db.php';
 
-$conn = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
+session_start();
 
 if (isset($_GET['token'])) {
     $token = $_GET['token'];
