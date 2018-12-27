@@ -1,13 +1,15 @@
 @import url('https://fonts.googleapis.com/css?family=Lora');
-
-li {
-  list-style-type: none;
-}
-
 .form-wrapper {
   margin: 50px auto 50px;
-  font-family: 'Lora', serif;
+  padding: 25px 15px 0px 15px;
+  border: 1px solid #80ced7;
+  border-radius: 5px;
   font-size: 1.09em;
+  font-family: 'Lora', serif;
+}
+
+.form-control:focus {
+  box-shadow: none;
 }
 
 .form-wrapper.login {
@@ -15,27 +17,16 @@ li {
 }
 
 .form-wrapper p {
-  font-size: .8em;
+  font-size: 0.8em;
   text-align: center;
 }
 
-.form-control:focus {
-  box-shadow: none;
+.form-wrapper .form-title {
+  color: #007ea7;
 }
 
-.form-wrapper {
-  border: 1px solid #80CED7;
-  border-radius: 5px;
-  padding: 25px 15px 0px 15px;
-}
-
-.form-wrapper.auth .form-title {
-  color: #007EA7;
-}
-
-.home-wrapper button,
-.form-wrapper.auth button {
-  background: #007EA7;
+.home-wrapper button, .form-wrapper button {
+  background: #007ea7;
   color: white;
 }
 
@@ -43,5 +34,5 @@ li {
   margin-top: 150px;
   border-radius: 5px;
   padding: 10px;
-  border: 1px solid #80CED7;
+  border: 1px solid #80ced7;
 }
