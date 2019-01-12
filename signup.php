@@ -16,7 +16,7 @@
 <body>
   <div class="container">
     <div class="row">
-      <div class="col-md-4 offset-md-4 form-wrapper auth">
+      <div class="col-md-4 offset-md-4 form-wrapper">
         <h3 class="text-center form-title">Register</h3>
 
         <?php if (count($errors) > 0): ?>
