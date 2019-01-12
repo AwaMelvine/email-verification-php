@@ -14,6 +14,9 @@ if (isset($_POST['signup-btn'])) {
     if (empty($_POST['email'])) {
         $errors['email'] = 'Email required';
     }
+    if (!empty($_POST['email']) && !filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)) {
+      $errors['email'] = "Invalid email address";
+    }
     if (empty($_POST['password'])) {
         $errors['password'] = 'Password required';
     }
